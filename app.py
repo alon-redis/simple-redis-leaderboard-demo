@@ -68,7 +68,7 @@ def process_answers():
         questions = [request.form[f'answer_{i+1}'] for i in range(10)]
         
         # Calculate player score (random number between 0 and 100)
-        player_score = random.randint(0, 100)
+        player_score = random.randint(0, 99)
         
         # Store player score in Redis leaderboard
         redis_client.zadd('leaderboard', {player_name: player_score})

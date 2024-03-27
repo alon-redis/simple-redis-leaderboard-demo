@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Play - Leaderboard App</title>
+</head>
+<body>
+    <h1>Play the Game!</h1>
+    <p>Welcome, {{ player_name }}!</p>
+    <form action="{{ url_for('process_answers') }}" method="POST">
+        <p>Answer the following questions:</p>
+        {% for i, question in enumerate(questions, 1) %}
+        <div>
+            <p><strong>Question {{ i }}:</strong> {{ question }}</p>
+            <label><input type="radio" name="answer_{{ i }}" value="Yes"> Yes</label>
+            <label><input type="radio" name="answer_{{ i }}" value="No"> No</label>
+        </div>
+        {% endfor %}
+        <input type="text" name="player_name" value="{{ player_name }}" style="display:none;">
+        <input type="submit" value="SEND">
+    </form>
+</body>
+</html>

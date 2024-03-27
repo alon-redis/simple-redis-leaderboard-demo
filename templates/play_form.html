@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Play - Leaderboard App</title>
+</head>
+<body>
+    <h1>Play the Game!</h1>
+    <form action="{{ url_for('play') }}" method="POST">
+        <label for="player_name">Enter Your Name:</label>
+        <input type="text" id="player_name" name="player_name" required>
+        <input type="submit" value="Play">
+    </form>
+</body>
+</html>

@@ -51,8 +51,14 @@ def leaderboard():
     # Get leaderboard from Redis
     leaderboard = redis_client.zrevrange('leaderboard', 0, -1, withscores=True)
     
+    # Pass enumerate function to template context
+    template_context = {
+        'leaderboard': leaderboard,
+        'enumerate': enumerate
+    }
+    
     # Render leaderboard page
-    return render_template('leaderboard.html', leaderboard=leaderboard)
+    return render_template('leaderboard.html', **template_context)
 
 # Process player answers and calculate score
 @app.route('/process_answers', methods=['POST'])
@@ -61,7 +67,7 @@ def process_answers():
         player_name = session.get('player_name')
         questions = [request.form[f'answer_{i+1}'] for i in range(10)]
         
-        # Calculate player score (random number between 0 and 10)
+        # Calculate player score (random number between 0 and 100)
         player_score = random.randint(0, 100)
         
         # Store player score in Redis leaderboard

@@ -2,17 +2,10 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import redis
 import random
 from generate_questions import generate_math_questions
+import sys
 
 app = Flask(__name__)
 app.secret_key = "super_secret_key"
-
-# Redis connection
-redis_host = "redis-10000.aws-alon-4758.env0.qa.redislabs.com"
-redis_port = 10000
-redis_db = 0
-redis_client = redis.StrictRedis(
-    host=redis_host, port=redis_port, db=redis_db, decode_responses=True
-)
 
 # Landing page
 @app.route('/')
@@ -48,16 +41,37 @@ def play():
 # Leaderboard page
 @app.route('/leaderboard')
 def leaderboard():
+    # Get Redis host and port from command line arguments
+    if len(sys.argv) < 3:
+        print("Usage: python app.py <redis_host> <redis_port>")
+        sys.exit(1)
+    
+    redis_host = sys.argv[1]
+    redis_port = int(sys.argv[2])
+    
+    # Redis connection
+    redis_client = redis.StrictRedis(
+        host=redis_host, port=redis_port, db=0, decode_responses=True
+    )
+    
     # Get leaderboard from Redis
     leaderboard = redis_client.zrevrange('leaderboard', 0, -1, withscores=True)
     
     # Count number of players
     num_players = redis_client.zcard('leaderboard')
     
+    # Count number of players with perfect score (100)
+    perfect_score_players = redis_client.zcount('leaderboard', 100, 100)
+    
+    # Count number of players with score between 90 and 100
+    high_score_players = redis_client.zcount('leaderboard', 90, 100)
+    
     # Pass data to template context
     template_context = {
         'leaderboard': leaderboard,
         'num_players': num_players,
+        'perfect_score_players': perfect_score_players,
+        'high_score_players': high_score_players,
         'enumerate': enumerate
     }
     
@@ -73,6 +87,19 @@ def process_answers():
         
         # Calculate player score (random number between 0 and 100)
         player_score = random.randint(0, 100)
+        
+        # Get Redis host and port from command line arguments
+        if len(sys.argv) < 3:
+            print("Usage: python app.py <redis_host> <redis_port>")
+            sys.exit(1)
+        
+        redis_host = sys.argv[1]
+        redis_port = int(sys.argv[2])
+        
+        # Redis connection
+        redis_client = redis.StrictRedis(
+            host=redis_host, port=redis_port, db=0, decode_responses=True
+        )
         
         # Store player score in Redis leaderboard
         redis_client.zadd('leaderboard', {player_name: player_score})

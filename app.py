@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import redis
 import random
-from generate_questions import generate_random_questions
+from generate_questions import generate_math_questions
 
 app = Flask(__name__)
 app.secret_key = "super_secret_key"
@@ -26,8 +26,8 @@ def play():
         # Get player name from form
         player_name = request.form['player_name']
         
-        # Generate random questions using Faker
-        questions = generate_random_questions(num_questions=10)
+        # Generate math questions
+        questions = generate_math_questions(num_questions=10)
         
         # Store player name in session
         session['player_name'] = player_name

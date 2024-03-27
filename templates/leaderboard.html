@@ -2,24 +2,44 @@
 <html>
 <head>
     <title>Leaderboard - Leaderboard App</title>
+    <style>
+        .leaderboard-table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: auto;
+        }
+        .leaderboard-table th, .leaderboard-table td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        .leaderboard-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .leaderboard-table tr:first-child {
+            color: green;
+        }
+    </style>
 </head>
 <body>
     <h1>Leaderboard</h1>
-    <table border="1">
-        <tr>
-            <th>Rank</th>
-            <th>Player Name</th>
-            <th>Score</th>
-        </tr>
-        {% for i in range(leaderboard|length) %}
-        {% set rank = i + 1 %}
-        {% set player, score = leaderboard[i] %}
-        <tr>
-            <td>{{ rank }}</td>
-            <td>{{ player }}</td>
-            <td>{{ score }}</td>
-        </tr>
-        {% endfor %}
+    <table class="leaderboard-table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rank, (player, score) in enumerate(leaderboard, 1) %}
+            <tr>
+                <td>{{ rank }}</td>
+                <td>{{ player }}</td>
+                <td>{{ score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
     <br>
     <a href="{{ url_for('index') }}">Return to Homepage</a>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaderboard - Leaderboard App</title>
+</head>
+<body>
+    <h1>Leaderboard</h1>
+    <table border="1">
+        <tr>
+            <th>Rank</th>
+            <th>Player Name</th>
+            <th>Score</th>
+        </tr>
+        {% for i in range(leaderboard|length) %}
+        {% set rank = i + 1 %}
+        {% set player, score = leaderboard[i] %}
+        <tr>
+            <td>{{ rank }}</td>
+            <td>{{ player }}</td>
+            <td>{{ score }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('index') }}">Return to Homepage</a>
+</body>
+</html>

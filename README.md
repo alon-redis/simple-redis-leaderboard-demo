@@ -1,7 +1,3 @@
-Sure! Below is an example of a README file for your project on GitHub. You can adjust it as needed for your specific project details.
-
----
-
 # Leaderboard Application
 
 This is a simple leaderboard application built with Python Flask and Redis. Users can play a game, answer questions, and view the leaderboard with player scores.
@@ -10,7 +6,7 @@ This is a simple leaderboard application built with Python Flask and Redis. User
 
 Before running the application, make sure you have the following installed:
 
-- Ubuntu Server (18.04 or later)
+- Ubuntu Server (22.04 or later)
 - Redis Server
 
 ## Installation
@@ -51,8 +47,8 @@ Before running the application, make sure you have the following installed:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/leaderboard-app.git
-    cd leaderboard-app
+    git clone https://github.com/alon-redis/simple-redis-leaderboard-demo.git
+    cd simple-redis-leaderboard-demo/
     ```
 
 2. Start the Redis Server:
@@ -78,7 +74,7 @@ Before running the application, make sure you have the following installed:
     Open a web browser and go to:
 
     ```
-    http://localhost:12000/
+    http://public IP:12000/
     ```
 
 ## Usage
@@ -87,11 +83,3 @@ Before running the application, make sure you have the following installed:
 - Answer the questions and submit your answers.
 - View the leaderboard to see the scores of all players.
 - The leaderboard also displays the number of players, perfect score players (100), and high score players (90-100).
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to customize the README file further based on your project requirements, adding more details, screenshots, or any other relevant information. This README provides a basic structure to get you started.

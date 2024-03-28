@@ -16,7 +16,7 @@ def fill_redis(redis_host, redis_port):
     faker = Faker()
     
     # Add players with real-sounding names and random scores
-    for _ in range(1000):
+    for _ in range(100):
         player_name = faker.name()
         player_score = random.randint(0, 99)
         redis_client.zadd('leaderboard', {player_name: player_score})

@@ -4,8 +4,11 @@
     <title>Leaderboard App</title>
 </head>
 <body>
-    <h1>Welcome to the Leaderboard App!</h1>
-    <a href="{{ url_for('play') }}"><button>Play</button></a>
-    <a href="{{ url_for('leaderboard') }}"><button>Leaderboard</button></a>
+    <h1>Welcome to the Leaderboard App</h1>
+    <div>
+        <a href="{{ url_for('play') }}"><button>Play</button></a>
+        <a href="{{ url_for('leaderboard') }}"><button>Leaderboard</button></a>
+        <a href="{{ url_for('liveboard') }}"><button>Liveboard</button></a>
+    </div>
 </body>
 </html>

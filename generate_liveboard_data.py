@@ -46,7 +46,7 @@ for _ in range(loop_count):
 
     # Print the top 5 players and scores for each game
     for game_name in game_names:
-        print(f"\nTop 5 players for {game_name}:")
+#        print(f"\nTop 5 players for {game_name}:")
         leaderboard = r.zrevrangebyscore(game_name, '+inf', '-inf', withscores=True, start=0, num=5)
-        for player, score in leaderboard:
-            print(f"{player.decode('utf-8')}: {score}")
+#        for player, score in leaderboard:
+#            print(f"{player.decode('utf-8')}: {score}")

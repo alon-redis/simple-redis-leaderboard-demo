@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liveboard - Leaderboard App</title>
+    <style>
+        .liveboard-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .liveboard-table th, .liveboard-table td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        .liveboard-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script>
+        function refreshLiveboard() {
+            window.location.reload();
+        }
+    </script>
+</head>
+<body>
+    <h1>Liveboard</h1>
+    <button onclick="refreshLiveboard()">Refresh</button>
+    <br><br>
+    
+    <div style="display: flex;">
+        {% for game_board in liveboard_data %}
+        <table class="liveboard-table" style="margin-right: 20px;">
+            <thead>
+                <tr>
+                    <th colspan="3">Game Board {{ loop.index }}</th>
+                </tr>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rank, (player, score) in enumerate(game_board, 1) %}
+                <tr>
+                    <td>{{ rank }}</td>
+                    <td>{{ player }}</td>
+                    <td>{{ score }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -19,11 +19,19 @@
         .leaderboard-table tr:first-child {
             color: green;
         }
+        .return-link {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
     </style>
 </head>
 <body>
+    <a href="{{ url_for('index') }}" class="return-link">Return to Homepage</a>
     <h1>Leaderboard</h1>
     <p>Number of Players: {{ num_players }}</p>
+    <p>Perfect Score Players: {{ perfect_score_players }}</p>
+    <p>High Score Players (90-100): {{ high_score_players }}</p>
     <table class="leaderboard-table">
         <thead>
             <tr>
@@ -42,7 +50,5 @@
             {% endfor %}
         </tbody>
     </table>
-    <br>
-    <a href="{{ url_for('index') }}">Return to Homepage</a>
 </body>
 </html>

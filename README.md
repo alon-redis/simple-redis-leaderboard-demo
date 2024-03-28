@@ -1,16 +1,15 @@
-# simple-redis-leaderboard-demo
-Simple demo App for Redis Based Leaderboard use case
+Getting Started
+This is an example of how you may give instructions on setting up your project locally. To get a local copy up and running follow these simple example steps.
 
-The demo requires flask as server and Redis as database
+Prerequisites
+This is an example of how to list things you need to use the software and how to install them.
 
-requirments:
-pip3 install Flask redis
-
-
-
+npm
+npm install npm@latest -g
 Installation
 Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services.
 
+Get a free API Key at https://example.com
 Clone the repo
 git clone https://github.com/your_username_/Project-Name.git
 Install NPM packages
@@ -22,4 +21,3 @@ const API_KEY = 'ENTER YOUR API';
 Usage
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-For more examples, please refer to the Documentation
